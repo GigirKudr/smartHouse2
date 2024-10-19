@@ -12,46 +12,53 @@ public class Radio {
         return currentVolume;
     }
 
+    public int setVolume(int volume) {
+        return currentVolume = volume;
+    }
 
-    public void setIncreaseVolume(int newCurrentVolume) {
-        if (newCurrentVolume == 100) {
+    public int setStation(int station) {
+        if (station <= 9 && station >= 0) {
+            return numberStation = station;
+        }
+        return 0;
+    }
+
+
+    public void increaseVolume() {
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
+        }
+        if (currentVolume == 100) {
             currentVolume = 100;
-            return;
         }
-        currentVolume = newCurrentVolume + 1;
     }
 
 
-    public void setDecreaseVolume(int newCurrentVolume) {
-        if (newCurrentVolume == 0) {
+    public void decreaseVolume() {
+        if (currentVolume <= 100 && currentVolume > 0) {
+            currentVolume = currentVolume - 1;
+        }
+        if (currentVolume == 0) {
             currentVolume = 0;
-            return;
         }
-
-        currentVolume = newCurrentVolume - 1;
     }
 
-    public void setNumberStation(int newNumberStation) {
-        if (newNumberStation <= 9 && newNumberStation >= 0) {
-            numberStation = newNumberStation;
+    public void nextStation() {
+        if (numberStation < 9) {
+            numberStation = numberStation + 1;
         }
-        return;
-    }
-
-    public void setNextStation(int newNumberStation) {
-        if (newNumberStation == 9) {
+        if (numberStation == 9) {
             numberStation = 0;
-            return;
         }
-        numberStation = newNumberStation + 1;
     }
 
-    public void setPrevStation(int newNumberStation) {
-        if (newNumberStation == 0) {
-            numberStation = 9;
-            return;
+    public void prevStation() {
+        if (numberStation <= 9 && numberStation > 0) {
+            numberStation = numberStation - 1;
         }
-        numberStation = newNumberStation - 1;
+        if (numberStation == 0) {
+            numberStation = 9;
+        }
     }
 }
 
