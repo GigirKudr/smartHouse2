@@ -84,6 +84,32 @@ public class RadioTest {
     }
 
     @Test
+    public void decreaseVolumeOutOfRangeUp() {
+        Radio radio = new Radio();
+        radio.setVolume(105);
+        radio.decreaseVolume();
+
+        int expected = 100;
+        int actual = radio.getCurrentVolume();
+        System.out.println("expected: " + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseVolumeOutOfRangeDown() {
+        Radio radio = new Radio();
+        radio.setVolume(-20);
+        radio.decreaseVolume();
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+        System.out.println("expected: " + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void setStation() {
         Radio radio = new Radio();
         radio.setStation(5);
@@ -120,9 +146,21 @@ public class RadioTest {
     }
 
     @Test
-    public void setStationOutOfRange() {
+    public void setStationOutOfRangeMax() {
         Radio radio = new Radio();
         radio.setStation(10);
+
+        int expected = 0;
+        int actual = radio.getNumberStation();
+        System.out.println("expected:" + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setStationOutOfRangeMin() {
+        Radio radio = new Radio();
+        radio.setStation(-10);
 
         int expected = 0;
         int actual = radio.getNumberStation();
@@ -199,10 +237,10 @@ public class RadioTest {
     @Test
     public void prevStation() {
         Radio radio = new Radio();
-        radio.setStation(5);
+        radio.setStation(7);
         radio.prevStation();
 
-        int expected = 4;
+        int expected = 6;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
