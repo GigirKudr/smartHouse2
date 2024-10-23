@@ -86,10 +86,10 @@ public class RadioTest {
 
     @Test
     public void setStation() {
-        Radio radio = new Radio(5);
-        radio.setStation(4);
+        Radio radio = new Radio(20);
+        radio.setStation(5);
 
-        int expected = 3;
+        int expected = 5;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
@@ -101,7 +101,7 @@ public class RadioTest {
         Radio radio = new Radio(25);
         radio.setStation(24);
 
-        int expected = 23;
+        int expected = 24;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
@@ -113,7 +113,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setStation(9);
 
-        int expected = 8;
+        int expected = 9;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
@@ -149,7 +149,7 @@ public class RadioTest {
         Radio radio = new Radio(45);
         radio.setStation(25);
 
-        int expected = 24;
+        int expected = 25;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
@@ -161,7 +161,55 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setStation(5);
 
-        int expected = 4;
+        int expected = 5;
+        int actual = radio.getNumberStation();
+        System.out.println("expected:" + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setStationNotParamOutOfRangeUp() {
+        Radio radio = new Radio();
+        radio.setStation(15);
+
+        int expected = 0;
+        int actual = radio.getNumberStation();
+        System.out.println("expected:" + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setStationWithParamOutOfRangeUp() {
+        Radio radio = new Radio(25);
+        radio.setStation(27);
+
+        int expected = 0;
+        int actual = radio.getNumberStation();
+        System.out.println("expected:" + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setStationNotParamOutOfRangeDown() {
+        Radio radio = new Radio();
+        radio.setStation(-27);
+
+        int expected = 0;
+        int actual = radio.getNumberStation();
+        System.out.println("expected:" + expected + ", actual: " + actual);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setStationWithParamOutOfRangeDown() {
+        Radio radio = new Radio(25);
+        radio.setStation(-27);
+
+        int expected = 0;
         int actual = radio.getNumberStation();
         System.out.println("expected:" + expected + ", actual: " + actual);
 
@@ -172,7 +220,8 @@ public class RadioTest {
     @Test
     public void nextStationWithParam() {
         Radio radio = new Radio(25);
-        radio.nextStation(10);
+        radio.setStation(10);
+        radio.nextStation();
 
         int expected = 11;
         int actual = radio.getNumberStation();
@@ -184,7 +233,8 @@ public class RadioTest {
     @Test
     public void nextStationNotParam() {
         Radio radio = new Radio();
-        radio.nextStation(5);
+        radio.setStation(5);
+        radio.nextStation();
 
         int expected = 6;
         int actual = radio.getNumberStation();
@@ -196,7 +246,8 @@ public class RadioTest {
     @Test
     public void nextStationMaxRangeWithParam() {
         Radio radio = new Radio(25);
-        radio.nextStation(24);
+        radio.setStation(24);
+        radio.nextStation();
 
         int expected = 0;
         int actual = radio.getNumberStation();
@@ -208,7 +259,8 @@ public class RadioTest {
     @Test
     public void nextStationMaxRangeNotParam() {
         Radio radio = new Radio();
-        radio.nextStation(9);
+        radio.setStation(9);
+        radio.nextStation();
 
         int expected = 0;
         int actual = radio.getNumberStation();
@@ -220,7 +272,8 @@ public class RadioTest {
     @Test
     public void nextStationMinRangeWithParam() {
         Radio radio = new Radio(25);
-        radio.nextStation(0);
+        radio.setStation(0);
+        radio.nextStation();
 
         int expected = 1;
         int actual = radio.getNumberStation();
@@ -232,7 +285,8 @@ public class RadioTest {
     @Test
     public void nextStationMinRangeNotParam() {
         Radio radio = new Radio();
-        radio.nextStation(0);
+        radio.setStation(0);
+        radio.nextStation();
 
         int expected = 1;
         int actual = radio.getNumberStation();
@@ -244,7 +298,8 @@ public class RadioTest {
     @Test
     public void prevStationMinRangeWithParam() {
         Radio radio = new Radio(25);
-        radio.prevStation(0);
+        radio.setStation(0);
+        radio.prevStation();
 
         int expected = 24;
         int actual = radio.getNumberStation();
@@ -256,7 +311,8 @@ public class RadioTest {
     @Test
     public void prevStationMinRangeNotParam() {
         Radio radio = new Radio();
-        radio.prevStation(0);
+        radio.setStation(0);
+        radio.prevStation();
 
         int expected = 9;
         int actual = radio.getNumberStation();
@@ -268,7 +324,8 @@ public class RadioTest {
     @Test
     public void prevStationMaxRangeWithParam() {
         Radio radio = new Radio(25);
-        radio.prevStation(24);
+        radio.setStation(24);
+        radio.prevStation();
 
         int expected = 23;
         int actual = radio.getNumberStation();
@@ -280,7 +337,8 @@ public class RadioTest {
     @Test
     public void prevStationMaxRangeNotParam() {
         Radio radio = new Radio();
-        radio.prevStation(9);
+        radio.setStation(9);
+        radio.prevStation();
 
         int expected = 8;
         int actual = radio.getNumberStation();
@@ -292,7 +350,8 @@ public class RadioTest {
     @Test
     public void prevStationWithParam() {
         Radio radio = new Radio(25);
-        radio.prevStation(10);
+        radio.setStation(10);
+        radio.prevStation();
 
         int expected = 9;
         int actual = radio.getNumberStation();
@@ -304,7 +363,8 @@ public class RadioTest {
     @Test
     public void prevStationNotParam() {
         Radio radio = new Radio();
-        radio.prevStation(5);
+        radio.setStation(5);
+        radio.prevStation();
 
         int expected = 4;
         int actual = radio.getNumberStation();

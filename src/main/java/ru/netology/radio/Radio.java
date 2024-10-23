@@ -1,14 +1,16 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int numberStation = 9;
+    private int numberStation;
     private int currentVolume;
+    private int maxStation;
 
-    public Radio(int numberStation) {
-        this.numberStation = numberStation - 1;
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
     }
 
     public Radio() {
+        this.maxStation = 9;
 
     }
 
@@ -24,49 +26,48 @@ public class Radio {
         return currentVolume = volume;
     }
 
-    public int setStation(int station) {
-        if (station <= numberStation && station != 0) {
-            return numberStation = station - 1;
+    public void setStation(int numberStation) {
+        if (numberStation < 0) {
+            return;
         }
-        return numberStation = 0;
+        if (numberStation > maxStation) {
+            return;
+        }
+        this.numberStation = numberStation;
     }
 
 
     public void increaseVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume != 100) {
             currentVolume = currentVolume + 1;
-        }
-        if (currentVolume == 100) {
+        } else {
             currentVolume = 100;
         }
     }
 
 
     public void decreaseVolume() {
-        if (currentVolume <= 100 && currentVolume != 0) {
+        if (currentVolume != 0) {
             currentVolume = currentVolume - 1;
-        }
-        if (currentVolume == 0) {
+        } else {
             currentVolume = 0;
         }
     }
 
 
-    public void nextStation(int newNumberStation) {
-        if (newNumberStation < numberStation - 1) {
-            numberStation = newNumberStation + 1;
-        }
-        if (newNumberStation == numberStation) {
+    public void nextStation() {
+        if (numberStation != maxStation) {
+            numberStation++;
+        } else {
             numberStation = 0;
         }
     }
 
-    public void prevStation(int newNumberStation) {
-        if (newNumberStation > 0) {
-            numberStation = newNumberStation - 1;
-        }
-        if (newNumberStation == 0) {
-            newNumberStation = numberStation;
+    public void prevStation() {
+        if (numberStation != 0) {
+            numberStation--;
+        } else {
+            numberStation = maxStation;
         }
     }
 }
